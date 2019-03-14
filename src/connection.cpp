@@ -105,7 +105,7 @@ bool connection::connect() {
             m_mysql, m_account->host_name().c_str(), m_account->user_name().c_str(),
             m_account->password().c_str(), nullptr, m_account->port(),
             m_account->unix_socket().empty() ? nullptr : m_account->unix_socket().c_str(),
-            CLIENT_MULTI_STATEMENTS))
+            CLIENT_FOUND_ROWS | CLIENT_MULTI_STATEMENTS))
         MYSQL_ERROR_RETURN_FALSE(m_mysql);
 
     if (!set_auto_commit(m_account->auto_commit())) MYSQL_ERROR_DISCONNECT(m_mysql);
